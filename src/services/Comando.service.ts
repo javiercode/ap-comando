@@ -17,11 +17,17 @@ class ComandoService implements IComando {
     async listAll(): Promise<MessageResponse> {
         const res: MessageResponse = { success: false, message: "Error de obtencion de datos", code: 0 };
         try {
-            let query = await ComandoRepository.listAll();
-            res.data = query.data;
+            //const b64 = Buffer.from(await data).toString('base64');
+            const result = await ComandoRepository.listAll();
+            const data = result.data .map(comando=>{
+                comando.imagen = Buffer.from(comando.imagen).toString('base64');
+                comando.sonido = Buffer.from(comando.sonido).toString('base64');
+                return comando
+            })
+            res.data = data;
             res.success = true;
             res.message = "Obtención exitosa";
-            res.total = query.count || 0;
+            res.total = result.count || 0;
         } catch (error) {
             console.error(error);
         }
@@ -32,8 +38,14 @@ class ComandoService implements IComando {
     async listByTipo(tipo:string): Promise<MessageResponse> {
         const res: MessageResponse = { success: false, message: "Error de obtencion de datos", code: 0 };
         try {
-            let query = await ComandoRepository.listByTipo(tipo);
-            res.data = query.data;
+            const query = tipo==""? await ComandoRepository.listAll(): await ComandoRepository.listByTipo(tipo);
+            const data = query.data .map(comando=>{
+                comando.imagen = Buffer.from(comando.imagen).toString('base64');
+                comando.sonido = Buffer.from(comando.sonido).toString('base64');
+                return comando
+            });
+            
+            res.data = data;
             res.success = true;
             res.message = "Obtención exitosa";
             res.total = query.count || 0;

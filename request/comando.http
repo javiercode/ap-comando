@@ -31,7 +31,6 @@ GET {{api}}/list/constantes M
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-
 ### Create
 POST {{api}}/create
 Content-Type: application/json
