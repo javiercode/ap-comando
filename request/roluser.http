@@ -1,0 +1,64 @@
+# @api = http://localhost:4000/apuesta/api/v1
+@api = https://api-apuesta.herokuapp.com/apuesta/api/v1
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhhdmllcmNvZGUiLCJhY3Rpdm8iOnRydWUsImlhdCI6MTY2OTY4Njk4OCwiZXhwIjoxNjY5NzMwMTg4fQ.4JpjRTiTgQOBRRQs56jHdPOKYuVO-xVfFD3tIirh3iI
+
+### Login
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "username":"xaviercode",
+    "password":"radames"
+}
+
+
+### test RolUser
+GET {{api}}/roluser/test
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### list RolUser
+GET {{api}}/roluser/list/xaviercode
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### Create RolUser
+POST {{api}}/roluser/create
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "rol":"ORG",
+    "grupo":"TEST",
+    "usuario":"xavi"
+}
+
+### Create RolUser ADM
+POST {{api}}/roluser/create
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "rol":"ADM",
+    "grupo":"",
+    "usuario":"xaviercode"
+}
+
+### Edit RolUser
+PUT {{api}}/roluser/edit/635ca32b86063e346860dad4
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "codigo":"ADM",
+    "descripcion":"Administrador",
+    "jerarquia":1
+}
+
+
+### Delete Rol
+DELETE {{api}}/roluser/delete/635ca32b86063e346860dad4
+Content-Type: application/json
+Authorization: Bearer {{token}}

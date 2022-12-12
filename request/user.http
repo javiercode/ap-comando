@@ -1,0 +1,45 @@
+@api = http://localhost:4000/apuesta/api/v1
+# @api = https://servicio-apuesta.herokuapp.com/apuesta/api/v1
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhhdmkiLCJhY3Rpdm8iOnRydWUsImlhdCI6MTY2OTY4NjEzNywiZXhwIjoxNjY5NzI5MzM3fQ.WQz-a98IQDht64sQKBMuIfzZlE3M-OzaXy3x_AkR3-8
+
+### Login
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "username":"xavi",
+    "password":"radames"
+}
+
+
+### List user
+GET {{api}}/usuario/list/0/10
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### Create user
+POST {{api}}/usuario/create/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "username":"xavi",
+    "nombre":"Javier Elvis",
+    "correo":"javier.azote@gmail.com",
+    "password":"radames",
+    "codFacebook":""
+}
+
+### Edit user
+PUT {{api}}/usuario/edit/635efff6407de841b45b8eb7
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "username":"xaviercode",
+    "name":"Javier Canqui",
+    "correo":"xaviercodee@gmail.com",
+    "password":"123456",
+    "codFacebook":"kjjhfs7fsdf8sdfsd9f"
+}
